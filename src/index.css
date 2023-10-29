@@ -1,5 +1,6 @@
 *{
   transition: all 0.3s ease-in-out;
+  margin: 0;
 }
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -22,7 +23,7 @@
   --span_color: -webkit-linear-gradient(#eeeeeeee, rgb(69, 57, 248));
 }
 [data-theme="dark"]{
-  --body_background: #404040;
+  --body_background: #222222;
   --body_color: white;
   --link_color: cyan;
   --a_color: #FFCEFB;
@@ -43,10 +44,12 @@ body {
 
 }
 
+/*
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+*/
 
 button {
   border-radius: 8px;
