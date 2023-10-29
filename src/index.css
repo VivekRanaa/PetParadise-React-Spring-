@@ -1,3 +1,6 @@
+*{
+  transition: all 0.3s ease-in-out;
+}
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -12,6 +15,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --body_background: white;
+  --body_color:black;
+  --link_color:navy;
+  --a_color:black;
+  --span_color: -webkit-linear-gradient(#eeeeeeee, rgb(69, 57, 248));
+}
+[data-theme="dark"]{
+  --body_background: #404040;
+  --body_color: white;
+  --link_color: cyan;
+  --a_color: #FFCEFB;
+  --span_color:  -webkit-linear-gradient(#eeeeeeee, rgb(69, 57, 248));
 }
 
 a {

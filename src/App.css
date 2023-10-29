@@ -1,0 +1,13 @@
+*{
+    background-color: var(--body_background);
+    color: var(--body_color);
+}
+link{
+    color: var(--link_color);
+}
+a{
+    color: var(--a_color);
+}
+span{
+   background-color: var(--span_color);
+}

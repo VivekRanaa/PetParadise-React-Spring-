@@ -26,12 +26,12 @@
         font-size: 3.5rem;
     }
 
-    .menu-links {
+    .menu-link {
         grid-column: 3/4;
 
     }
 
-    .menu-links ul {
+    .menu-link ul {
         height: 5rem;
         display: flex;
         justify-content: space-around;
@@ -40,19 +40,19 @@
         list-style-type: none
     }
 
-    .menu-links ul li {
+    .menu-link ul li {
         font-size: 1.2rem;
     }
 
-    .menu-links ul li a {
+    .menu-link ul li a {
         text-transform: capitalize;
-        color: rgba(0, 0, 3, 0.8);
+        color: var(--a_color);
         transition: 0.5s;
     }
 
-    .menu-links ul li:hover > a {
+    .menu-link ul li:hover > a {
         transform-origin: left;
-        color: rgba(0, 0, 3, 1);
+        color: var(--a_color);
         text-decoration: underline;
         transition: 0.5s;
     }
@@ -79,4 +79,76 @@
         text-align: center;
 
     }
+ .hamburger-menu{
+     display: none;
+ }
+   .fb{
+       color:blue;
+   }
+   .insta{
+       color:#DD2A7B;
+   }
+   .yt{
+       color: red;
+   }
+   @media (max-width: 1295px) {
+       .main-nav {
+           height: 7rem;
+           grid-template-columns: 2rem 2fr 3fr 2rem 2rem;
+       }
+
+       .menu-link {
+           display: none;
+       }
+
+       .logo{
+           height: 7rem;
+       }
+
+       .mobile-menu-link {
+           grid-column: 2/4;
+           position: relative;
+           z-index: 99;
+       }
+
+       .mobile-menu-link {
+           background-color: white;
+           height: 21rem;
+           display: grid;
+           grid-column: 2/5;
+           align-items: center;
+           padding-left: 3rem;
+           transition: all 2s linear;
+           transform-origin: top;
+           box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+           rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+       }
+
+       .mobile-menu-link ul {
+           height: 20rem;
+           display: flex;
+           justify-content: space-around;
+           flex-direction: column;
+           align-items: start;
+       }
+
+       .mobile-menu-link ul li:first-child {
+           transition-delay: 0.2s;
+       }
+       .social-media ul{
+           display: none;
+       }
+    .menu-link{
+        display: none;
+    }
+       .social-media .hamburger-menu{
+            display: block;
+            font-size: 2.5rem;
+           margin-top: 20px;;
+        }
+    .logo h2{
+        font-size: 2rem;
+    }
+
+   }
 
