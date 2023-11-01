@@ -25,8 +25,9 @@ video{
 }
 
 .hero-container{
+
    height: 100vh;
-    width: 100%;
+    width: 100vw;
      display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,13 +38,13 @@ video{
 
 }
 .hero-container h1{
-    font-size: 5vh;
+    font-size: 2.5vw;
     background-color: transparent;
     position: relative;
     top: 15%;
 }
 .hero-container h3{
-    font-size: 3vh;
+    font-size: 1.5vw;
     position: relative;
     top:20%;
     text-align: center;
@@ -114,15 +115,19 @@ li{
 #li1{
     grid-column: 1;
 }
-/*@media (max-width: 998px) {
+@media (max-width: 998px) {
     .hero-container{
-        height: 300vh;
+        height: 150vh;
+        width: 100vw;
     }
     ul{
-        align-self: flex-start;
+        align-items: center;
         display: grid;
         grid-template-rows: 3fr 0.5fr 3fr 0.5fr 3fr;
         margin-top: 150%;
+    }
+    ul li{
+        margin-left: 1vw;
     }
     #li1{
         grid-column: 1/4;
@@ -136,4 +141,5 @@ li{
         grid-column: 1/4;
         grid-row: 5;
     }
-    }*/
+    }
+
