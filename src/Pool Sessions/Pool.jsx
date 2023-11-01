@@ -19,9 +19,9 @@ function Pool() {
             <div className="Pool-images">
                 <div className="images">
                     <ul>
-                        <li id="li1"> <img src="../../public/Images/p1.jpg" alt="Image Not Loading" />   </li>
-                        <li id="li2">  <img src="../../public/Images/p2.jpg" alt="Image Not Loading"/>  </li>
-                        <li id="li3">  <img src="../../public/Images/poolparty.jpg" alt="Image Not Loading" />    </li>
+                        <li id="li1"> <img src="/Images/p1.jpg" alt="Image Not Loading" />   </li>
+                        <li id="li2">  <img src="/Images/p2.jpg" alt="Image Not Loading"/>  </li>
+                        <li id="li3">  <img src="/Images/poolparty.jpg" alt="Image Not Loading" />    </li>
                     </ul>
                 </div>
             </div>

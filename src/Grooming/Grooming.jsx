@@ -16,9 +16,9 @@ function Groom() {
             <div className="Groom-images">
                 <div className="images">
                     <ul>
-                        <li id="li1"> <img src="../../public/Images/bath1.jpeg" alt="Image Not Loading" />   </li>
-                        <li id="li2">  <img src="../../public/Images/bath2.jpeg" alt="Image Not Loading"/>  </li>
-                        <li id="li3">  <img src="../../public/Images/groompage.jpg" alt="Image Not Loading" />    </li>
+                        <li id="li1"> <img src="/Images/bath1.jpeg" alt="Image Not Loading" />   </li>
+                        <li id="li2">  <img src="/Images/bath2.jpeg" alt="Image Not Loading"/>  </li>
+                        <li id="li3">  <img src="/Images/groompage.jpg" alt="Image Not Loading" />    </li>
                     </ul>
                 </div>
             </div>

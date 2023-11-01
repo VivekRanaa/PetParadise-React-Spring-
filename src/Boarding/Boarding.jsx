@@ -16,9 +16,9 @@ function Boarding() {
                 <div className="Boarding-images">
                     <div className="images">
                         <ul>
-                        <li id="li1"> <img src="../../public/Images/b1.jpeg" alt="Image Not Loading" />   </li>
-                        <li id="li2">  <img src="../../public/Images/b2.jpeg" alt="Image Not Loading"/>  </li>
-                        <li id="li3">  <img src="../../public/Images/t2.jpeg" alt="Image Not Loading" />    </li>
+                        <li id="li1"> <img src="/Images/b1.jpeg" alt="Image Not Loading" />   </li>
+                        <li id="li2">  <img src="/Images/b2.jpeg" alt="Image Not Loading"/>  </li>
+                        <li id="li3">  <img src="/Images/t2.jpeg" alt="Image Not Loading" />    </li>
                     </ul>
                     </div>
                 </div>
