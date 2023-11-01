@@ -16,9 +16,9 @@ function HeroSection() {
             <div className="Hero-images">
                 <div className="images">
                     <ul>
-                        <li id="li1"> <img src="../../public/Images/pool.jpg" alt="Image Not Loading" />   </li>
-                        <li id="li2">  <img src="../../public/Images/bath.jpg" alt="Image Not Loading" />  </li>
-                        <li id="li3">  <img src="../../public/Images/groom.jpg" alt="Image Not Loading" />    </li>
+                        <li id="li1"> <img src="/Images/pool.jpg" alt="Image Not Loading" />   </li>
+                        <li id="li2">  <img src="/Images/bath.jpg" alt="Image Not Loading" />  </li>
+                        <li id="li3">  <img src="/Images/groom.jpg" alt="Image Not Loading" />    </li>
                     </ul></div>
             </div>
 
