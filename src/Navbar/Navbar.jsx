@@ -27,10 +27,10 @@ function navbar () {
                               <Link to="/">Home</Link>
                             </li>
                             <li>
-                                <Link to="/">Boarding</Link>
+                                <Link to="/Boarding">Boarding</Link>
                             </li>
                             <li>
-                                <Link to="/">Pool Sessions</Link>
+                                <Link to="/PoolSessions">Pool Sessions</Link>
                             </li>
                             <li>
                                 <Link to="/">Grooming</Link>

@@ -12,16 +12,17 @@ function HeroSection() {
                     We provide the best home pet boarding in Bangalore for cats and dogs with the utmost care and safety while you relax, unwind, recharge.
                     You don’t have to look for a cat/dog care centre or a doggy day-care either. Let our devoted pet boarders treat your fur-babies with the love and care they deserve.
                     We provide constant updates of all the woofs and meows, keeping a track of their activities.</h3>
-
-
-                    <ul>
-                        <li id="li1"> <img src="../../public/Images/pool.jpg" alt="Image Not Loading" id="hero-pool"/>   </li>
-                        <li id="li2">  <img src="../../public/Images/bath.jpg" alt="Image Not Loading" id="hero-bath"/>  </li>
-                        <li id="li3">  <img src="../../public/Images/groom.jpg" alt="Image Not Loading" id="hero-groom"/>    </li>
-                    </ul>
-
-
             </div>
+            <div className="Hero-images">
+                <div className="images">
+                    <ul>
+                        <li id="li1"> <img src="../../public/Images/pool.jpg" alt="Image Not Loading" />   </li>
+                        <li id="li2">  <img src="../../public/Images/bath.jpg" alt="Image Not Loading" />  </li>
+                        <li id="li3">  <img src="../../public/Images/groom.jpg" alt="Image Not Loading" />    </li>
+                    </ul></div>
+            </div>
+
+
         </>
     )
 }
