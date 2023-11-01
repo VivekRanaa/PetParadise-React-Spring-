@@ -33,7 +33,7 @@ function navbar () {
                                 <Link to="/PoolSessions">Pool Sessions</Link>
                             </li>
                             <li>
-                                <Link to="/">Grooming</Link>
+                                <Link to="/Grooming">Grooming</Link>
                             </li>
                             <li>
                                 <Link to="/">Pet Shop</Link>

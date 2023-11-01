@@ -1,4 +1,4 @@
-.pool{
+.Groom{
     height: 80vh;
     width: 100%;
     align-items: center;
@@ -9,7 +9,7 @@
 *{
     background-color: var(--body_background);
 }
-.Pool-text{
+.Groom-text{
     text-align: center;
     height: 70vh;
     width: 100%;
@@ -17,7 +17,7 @@
     top: 25vh;
 
 }
-.Pool-images{
+.Groom-images{
     height: 30vh;
     width: 100%;
     position: absolute;

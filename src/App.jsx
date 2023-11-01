@@ -6,6 +6,7 @@ import Home from "./Pages/Home.jsx";
 import Boarding from "./Boarding/Boarding.jsx";
 import Details from "./Details/Details.jsx";
 import Pool from "./Pool Sessions/Pool.jsx";
+import Groom from "./Grooming/Grooming.jsx";
 function App() {
 
 
@@ -18,6 +19,8 @@ function App() {
                 <Route exact path='/Boarding' element={<Boarding />} />
                 <Route exact path="/Details"  element={<Details />}/>
                 <Route exact path="/PoolSessions" element={<Pool />} />
+                <Route exact path="/Grooming" element={<Groom />} />
+
              </Routes>
         </Router>
     </>
