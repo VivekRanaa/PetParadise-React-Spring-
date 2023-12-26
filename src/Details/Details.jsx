@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import "./Details.css"
+import axios from "axios";
 
 class Details extends Component {
+
+
     constructor(props) {
         super(props);
         this.state = {
-            fname: '',
-            lname:"",
+            first_Name: '',
+            last_Name:"",
             email: '',
-            mobile: '',
-            dob: '',
-            address: '',
-            gender: 'Male',
-            maritalStatus: 'Single',
+            mobile_No: '',
             country: '',
             state: '',
             pincode: '',
@@ -41,14 +40,7 @@ class Details extends Component {
             errors.mobile = 'Mobile number is required';
             invalidFields.push('Mobile Number');
         }
-        if (!dob) {
-            errors.dob = 'Date of Birth is required';
-            invalidFields.push('Date of Birth');
-        }
-        if (!address) {
-            errors.address = 'Address is required';
-            invalidFields.push('Address');
-        }
+
         if (!country) {
             errors.country = 'Country is required';
             invalidFields.push('Country');
@@ -87,6 +79,16 @@ class Details extends Component {
         if (this.validateForm()) {
             // Submit the form if it's valid
             console.log('Form submitted:', this.state);
+            axios.post("http://localhost:8080/api/v1/Forms", {
+                "country": this.state.country,
+                "email": this.state.email,
+                "facilities": this.state.facility,
+                "first_Name": this.state.first_Name,
+                "last_Name": this.state.last_Name,
+                "mobile_No": this.state.mobile_No,
+                "pincode": this.state.pincode,
+                "state": this.state.state
+            })
         } else {
             // Display validation errors
             console.log('Form has errors. Please correct them.');
@@ -106,7 +108,7 @@ class Details extends Component {
                                 <input
                                     type="text"
                                     name="fname"
-                                    value={this.state.fname}
+                                    value={this.state.first_Name}
                                     onChange={this.handleChange}
                                 />
                             </td>
@@ -115,7 +117,7 @@ class Details extends Component {
                                 <input
                                     type="text"
                                     name="lname"
-                                    value={this.state.lname}
+                                    value={this.state.last_Name}
                                     onChange={this.handleChange}
                                 />
                             </td>
@@ -136,58 +138,12 @@ class Details extends Component {
                                 <input
                                     type="tel"
                                     name="mobile"
-                                    value={this.state.mobile}
+                                    value={this.state.mobile_No}
                                     onChange={this.handleChange}
                                 />
                             </td>
                         </tr>
-                        <tr>
-                            <td>Date of Birth:</td>
-                            <td>
-                                <input
-                                    type="date"
-                                    name="dob"
-                                    value={this.state.dob}
-                                    onChange={this.handleChange}
-                                />
-                            </td>
 
-                            <td>Address:</td>
-                            <td>
-                  <textarea
-                      name="address"
-                      value={this.state.address}
-                      onChange={this.handleChange}
-                  />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Gender:</td>
-                            <td>
-                                <select
-                                    name="gender"
-                                    value={this.state.gender}
-                                    onChange={this.handleChange}
-                                >
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </td>
-
-                            <td>Marital Status:</td>
-                            <td>
-                                <select
-                                    name="maritalStatus"
-                                    value={this.state.maritalStatus}
-                                    onChange={this.handleChange}
-                                >
-                                    <option value="Single">Single</option>
-                                    <option value="Married">Married</option>
-                                    <option value="Divorced">Divorced</option>
-                                </select>
-                            </td>
-                        </tr>
                         <tr>
                             <td>Country:</td>
                             <td>

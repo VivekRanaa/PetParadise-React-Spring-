@@ -7,6 +7,7 @@ import Boarding from "./Boarding/Boarding.jsx";
 import Details from "./Details/Details.jsx";
 import Pool from "./Pool Sessions/Pool.jsx";
 import Groom from "./Grooming/Grooming.jsx";
+import PetShop from "./PetShop/PetShop.jsx";
 function App() {
 
 
@@ -20,6 +21,7 @@ function App() {
                 <Route exact path="/Details"  element={<Details />}/>
                 <Route exact path="/PoolSessions" element={<Pool />} />
                 <Route exact path="/Grooming" element={<Groom />} />
+                <Route exact path="/PetShop" element={<PetShop/>} />
 
              </Routes>
         </Router>

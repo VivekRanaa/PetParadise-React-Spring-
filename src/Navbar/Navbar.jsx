@@ -36,7 +36,7 @@ function navbar () {
                                 <Link to="/Grooming">Grooming</Link>
                             </li>
                             <li>
-                                <Link to="/">Pet Shop</Link>
+                                <Link to="/PetShop">Pet Shop</Link>
                             </li>
                         </ul>
                     </div>

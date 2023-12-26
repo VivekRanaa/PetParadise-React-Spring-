@@ -1,0 +1,78 @@
+.petshop{
+    z-index: -1;
+    height:50vh ;
+    width: 100vw;
+    position: relative;
+    top: 20vh;
+}
+.petshop-header{
+    height: 10vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    border-inline-start: solid thick;
+    writing-mode: horizontal-tb;
+
+}
+.header-search-bar{
+    display:grid;
+    grid-template-columns: 3fr 7fr;
+}
+.header-search-bar h1{
+    grid-column: 1/2;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.header-search-bar input {
+    grid-column: 2/3;
+    border: 3px solid #aaaaaa;
+    height: 8vh;
+    box-sizing: border-box;
+    padding: 1px 10px;
+    outline: none;
+    transition: 0.2s ease-in-out;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.header-search-bar input:focus {
+    transition: 0.2s ease-in-out;
+    border: 1px solid grey;
+}
+.header-icons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icons{
+    font-size: 5vh;
+}
+.petshop-body{
+    z-index: 1;
+    height: 10vh;
+    width: 100vw;
+    position: relative;
+    top :10vh;
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+}
+
+.petshop-categories{
+    z-index: 1;
+    grid-column: 1/2;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+.petshop-cards{
+    display: flex;
+    justify-content: center;
+    grid-column: 2/3;
+    height: 80vh;
+    width: 100%;
+}
