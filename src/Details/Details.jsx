@@ -1,203 +1,186 @@
-import React, { Component } from 'react';
-import "./Details.css"
+import React, { useState } from 'react';
+import "./Details.css";
 import axios from "axios";
 
-class Details extends Component {
+const Details = () => {
+    const [formData, setFormData] = useState({
+        first_Name: '',
+        last_Name: '',
+        email: '',
+        mobile_No: '',
+        country: '',
+        state: '',
+        pincode: '',
+        facilities: 'Boarding'
+    });
 
+    const [errors, setErrors] = useState({});
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            first_Name: '',
-            last_Name:"",
-            email: '',
-            mobile_No: '',
-            country: '',
-            state: '',
-            pincode: '',
-            facility: 'Boarding'
-        };
-    }
-
-    validateForm = () => {
-        const { fname,lname, email, mobile, dob, address, country, state, pincode,facility } = this.state;
-        const errors = {};
+    const validateForm = () => {
+        const { first_Name, last_Name, email, mobile_No, country, state, pincode ,facilities} = formData;
+        const newErrors = {};
         const invalidFields = [];
 
-        if (!fname) {
-            errors.name = 'Name is required';
-            invalidFields.push('Name');
+        if (!first_Name) {
+            newErrors.first_Name = 'First Name is required';
+            invalidFields.push('First Name');
         }
-        if (!lname) {
-            errors.name = 'Name is required';
-            invalidFields.push('Name');
+        if (!last_Name) {
+            newErrors.last_Name = 'Last Name is required';
+            invalidFields.push('Last Name');
         }
         if (!email) {
-            errors.email = 'Email is required';
+            newErrors.email = 'Email is required';
             invalidFields.push('Email');
         }
-        if (!mobile) {
-            errors.mobile = 'Mobile number is required';
+        if (!mobile_No) {
+            newErrors.mobile_No = 'Mobile number is required';
             invalidFields.push('Mobile Number');
         }
-
         if (!country) {
-            errors.country = 'Country is required';
+            newErrors.country = 'Country is required';
             invalidFields.push('Country');
         }
         if (!state) {
-            errors.state = 'State is required';
+            newErrors.state = 'State is required';
             invalidFields.push('State');
         }
         if (!pincode) {
-            errors.pincode = 'Pincode is required';
+            newErrors.pincode = 'Pincode is required';
             invalidFields.push('Pincode');
         }
 
-
-        this.setState({ errors });
+        setErrors(newErrors);
 
         if (invalidFields.length > 0) {
             alert(`The following fields are invalid: ${invalidFields.join(', ')}`);
-        }
-        else{
-            alert("form submitted")
+        } else {
+            alert("Form submitted");
         }
 
-        return Object.keys(errors).length === 0; // If there are no errors, the form is valid
-    }
+        return Object.keys(newErrors).length === 0;
+    };
 
-    handleChange = (e) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
-       
-        this.setState({ [name]: value });
-    }
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
 
-    handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (this.validateForm()) {
-            // Submit the form if it's valid
-            console.log('Form submitted:', this.state);
-            axios.post("http://localhost:8080/api/v1/Forms", {
-                "country": this.state.country,
-                "email": this.state.email,
-                "facilities": this.state.facility,
-                "first_Name": this.state.first_Name,
-                "last_Name": this.state.last_Name,
-                "mobile_No": this.state.mobile_No,
-                "pincode": this.state.pincode,
-                "state": this.state.state
-            })
+        if (validateForm()) {
+            try {
+                await axios.post("http://localhost:8080/api/v1/Forms", formData);
+                console.log('Form submitted:', formData);
+            } catch (error) {
+                console.error('Error submitting form:', error);
+            }
         } else {
-            // Display validation errors
             console.log('Form has errors. Please correct them.');
         }
-    }
+    };
 
-    render() {
-        return (
-            <div className="details">
-                <h2>Facilities Form</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td>First Name:</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    name="fname"
-                                    value={this.state.first_Name}
-                                    onChange={this.handleChange}
-                                />
-                            </td>
-                            <td>Last Name:</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    name="lname"
-                                    value={this.state.last_Name}
-                                    onChange={this.handleChange}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Email ID:</td>
-                            <td>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={this.state.email}
-                                    onChange={this.handleChange}
-                                />
-                            </td>
+    return (
+        <div className="details">
+            <h2>Facilities Form</h2>
+            <form onSubmit={handleSubmit}>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>First Name:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="first_Name"
+                                value={formData.first_Name}
+                                onChange={handleChange}
+                            />
+                            {errors.first_Name && <span className="error">{errors.first_Name}</span>}
+                        </td>
+                        <td>Last Name:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="last_Name"
+                                value={formData.last_Name}
+                                onChange={handleChange}
+                            />
+                            {errors.last_Name && <span className="error">{errors.last_Name}</span>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email ID:</td>
+                        <td>
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                        </td>
 
-                            <td>Mobile Number:</td>
-                            <td>
-                                <input
-                                    type="tel"
-                                    name="mobile"
-                                    value={this.state.mobile_No}
-                                    onChange={this.handleChange}
-                                />
-                            </td>
-                        </tr>
+                        <td>Mobile Number:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="mobile_No"
+                                value={formData.mobile_No}
+                                onChange={handleChange}
+                            />
+                        </td>
+                    </tr>
 
-                        <tr>
-                            <td>Country:</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    name="country"
-                                    value={this.state.country}
-                                    onChange={this.handleChange}
-                                />
-                            </td>
+                    <tr>
+                        <td>Country:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="country"
+                                value={formData.country}
+                                onChange={handleChange}
+                            />
+                        </td>
 
-                            <td>State:</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    name="state"
-                                    value={this.state.state}
-                                    onChange={this.handleChange}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Pincode:</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    name="pincode"
-                                    value={this.state.pincode}
-                                    onChange={this.handleChange}
-                                />
-                            </td>
-                            <td>Facilities:</td>
-                            <td>
-                                <select
-                                    name="facility"
-                                    value={this.state.facility}
-                                    onChange={this.handleChange}
-                                >
-                                    <option value="Boarding">Boarding</option>
-                                    <option value="Pool">Pool Sessions</option>
-                                    <option value="Grooming">Grooming</option>
-                                </select>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <button className="button-80" role="button">Submit Details</button>
-
-                </form>
-            </div>
-        );
-    }
-}
-
-
+                        <td>State:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="state"
+                                value={formData.state}
+                                onChange={handleChange}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pincode:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="pincode"
+                                value={formData.pincode}
+                                onChange={handleChange}
+                            />
+                        </td>
+                        <td>Facilities:</td>
+                        <td>
+                            <select
+                                name="facilities"
+                                value={formData.facilities}
+                                onChange={handleChange}
+                            >
+                                <option value="Boarding">Boarding</option>
+                                <option value="Pool">Pool Sessions</option>
+                                <option value="Grooming">Grooming</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button className="button-80" role="button" type="submit">Submit Details</button>
+            </form>
+        </div>
+    );
+};
 
 export default Details;
