@@ -1,78 +1,377 @@
-.petshop{
-    z-index: -1;
-    height:50vh ;
-    width: 100vw;
+/* Pet Shop Page Styles */
+.petshop-page {
+    min-height: 100vh;
+    padding: var(--spacing-xl) 0;
+}
+
+.petshop-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+/* Header Section */
+.petshop-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+    animation: var(--animation-fadeInUp);
+}
+
+.petshop-header h2 {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-800);
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-accent-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.petshop-header p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Search Section */
+.search-section {
+    background: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-3xl);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.search-container {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-input-wrapper {
+    flex: 1;
+    min-width: 250px;
     position: relative;
-    top: 20vh;
-}
-.petshop-header{
-    height: 10vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 6fr 4fr;
-    border-inline-start: solid thick;
-    writing-mode: horizontal-tb;
-
-}
-.header-search-bar{
-    display:grid;
-    grid-template-columns: 3fr 7fr;
-}
-.header-search-bar h1{
-    grid-column: 1/2;
-    display: flex;
-    align-self: center;
-    justify-content: center;
 }
 
-.header-search-bar input {
-    grid-column: 2/3;
-    border: 3px solid #aaaaaa;
-    height: 8vh;
-    box-sizing: border-box;
-    padding: 1px 10px;
+.search-input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-3xl);
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-md);
+    transition: var(--transition-smooth);
+    background: var(--color-background);
+}
+
+.search-input:focus {
     outline: none;
-    transition: 0.2s ease-in-out;
-    display: flex;
-    align-self: center;
-    justify-content: center;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px var(--color-primary-100);
 }
 
-.header-search-bar input:focus {
-    transition: 0.2s ease-in-out;
-    border: 1px solid grey;
+.search-icon {
+    position: absolute;
+    left: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-lg);
 }
-.header-icons{
+
+.category-filters {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.category-filter {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius-full);
+    background: var(--color-background);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    font-size: var(--font-size-sm);
+}
+
+.category-filter:hover {
+    border-color: var(--color-primary-500);
+    background: var(--color-primary-50);
+}
+
+.category-filter.active {
+    background: var(--color-primary-500);
+    border-color: var(--color-primary-500);
+    color: white;
+}
+
+/* Products Grid */
+.products-section {
+    margin-bottom: var(--spacing-3xl);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.product-card {
+    background: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    transition: var(--transition-smooth);
+    animation: var(--animation-fadeInUp);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary-300);
+}
+
+.product-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.1);
+}
+
+.product-badge {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background: var(--color-primary-500);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.product-info {
+    padding: var(--spacing-lg);
+}
+
+.product-category {
+    font-size: var(--font-size-xs);
+    color: var(--color-primary-500);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-xs);
+}
+
+.product-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.4;
+}
+
+.product-description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.5;
+}
+
+.product-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.price-current {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-600);
+}
+
+.price-original {
+    font-size: var(--font-size-md);
+    color: var(--color-text-secondary);
+    text-decoration: line-through;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.stars {
+    display: flex;
+    gap: 2px;
+}
+
+.star {
+    color: var(--color-accent-400);
+    font-size: var(--font-size-sm);
+}
+
+.rating-text {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+.product-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.add-to-cart-btn {
+    flex: 1;
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+}
+
+.add-to-cart-btn:hover {
+    background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-800));
+    transform: translateY(-1px);
+}
+
+.wishlist-btn {
+    background: var(--color-background);
+    border: 2px solid var(--color-border);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: var(--transition-smooth);
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.icons{
-    font-size: 5vh;
-}
-.petshop-body{
-    z-index: 1;
-    height: 10vh;
-    width: 100vw;
-    position: relative;
-    top :10vh;
-    display: grid;
-    grid-template-columns: 2fr 8fr;
+
+.wishlist-btn:hover {
+    border-color: var(--color-primary-500);
+    background: var(--color-primary-50);
 }
 
-.petshop-categories{
-    z-index: 1;
-    grid-column: 1/2;
-    height: 80vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-
+/* Cart Summary */
+.cart-summary {
+    position: fixed;
+    top: var(--spacing-xl);
+    right: var(--spacing-xl);
+    background: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    min-width: 200px;
+    z-index: 1000;
 }
-.petshop-cards{
-    display: flex;
-    justify-content: center;
-    grid-column: 2/3;
-    height: 80vh;
+
+.cart-summary h4 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.cart-total {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-600);
+    margin-bottom: var(--spacing-md);
+}
+
+.checkout-btn {
     width: 100%;
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.checkout-btn:hover {
+    background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-800));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .petshop-container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .petshop-header h2 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-input-wrapper {
+        min-width: auto;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-lg);
+    }
+    
+    .cart-summary {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-top: var(--spacing-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .petshop-header h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .product-actions {
+        flex-direction: column;
+    }
+    
+    .search-section {
+        padding: var(--spacing-lg);
+    }
 }

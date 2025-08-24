@@ -5,8 +5,8 @@ import Navbar from "./Navbar/Navbar.jsx";
 import Home from "./Pages/Home.jsx";
 import Boarding from "./Boarding/Boarding.jsx";
 import Details from "./Details/Details.jsx";
-import Pool from "./Pool Sessions/Pool.jsx";
-import Groom from "./Grooming/Grooming.jsx";
+import Pool from "./Pool Sessions/Pool_fixed.jsx";
+import Groom from "./Grooming/Grooming_fixed.jsx";
 import PetShop from "./PetShop/PetShop.jsx";
 function App() {
 

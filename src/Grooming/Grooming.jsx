@@ -1,7 +1,13 @@
-import React, {useState} from "react";
-import "../App.css"
-import "./Grooming.css"
-import {Link} from "react-router-dom";
+import React             <div className="grooming-header">
+                <h2>Professional Pet Grooming Services</h2>
+                <p>Pet Paradise is Bangalore's leading pet grooming home service provider. We offer convenient, 
+                flexible and cost-effective grooming services right at your doorstep. Our professional 
+                groomers ensure your furry friends look and feel their absolute best.</p>
+            </div>m "react";
+import "../App.css";
+import "./Grooming.css";
+import { Link } from "react-router-dom";
+import { FaCut, FaBath, FaRegGem, FaPaw, FaStar, FaHeart } from "react-icons/fa";
 
 function Groom() {
 
@@ -23,7 +29,7 @@ function Groom() {
                 </div>
             </div>
             <div className="fill-button" >
-                ><Link to="/Details"> <button>Fill Details</button></Link>
+                <Link to="/Details"> <button>Fill Details</button></Link>
             </div>
 
         </>

@@ -1,7 +1,14 @@
-import React, {useState} from "react";
-import "../App.css"
-import "./Pool.css"
-import {Link} from "react-router-dom";
+import React             <div className="pool-header">
+                <h2>Pool Sessions & Aqua Therapy</h2>
+                <p>
+                    Our four-legged friends deserve the same enjoyment from splashing around with friends,
+                    soaking up the sun and enjoying their time poolside. Professional supervision ensures a safe experience!
+                </p>
+            </div>react";
+import "../App.css";
+import "./Pool.css";
+import { Link } from "react-router-dom";
+import { FaSwimmingPool, FaSun, FaHeart, FaUsers, FaWater, FaStar } from "react-icons/fa";
 
 function Pool() {
 
@@ -26,7 +33,7 @@ function Pool() {
                 </div>
             </div>
             <div className="fill-button" >
-                ><Link to="/Details"> <button>Fill Details</button></Link>
+                <Link to="/Details"> <button>Fill Details</button></Link>
             </div>
 
         </>
