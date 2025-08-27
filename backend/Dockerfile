@@ -1,7 +1,7 @@
-# Use the official OpenJDK 17 image as the base image
+# Use OpenJDK 17 as base image
 FROM openjdk:17-jdk-slim
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
 # Install Maven
@@ -10,20 +10,26 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy the pom.xml file to leverage Docker cache layers
+# Copy Maven files
 COPY pom.xml .
+COPY mvnw .
+COPY mvnw.cmd .
+COPY .mvn .mvn
 
-# Download dependencies (this will be cached if pom.xml doesn't change)
+# Download dependencies
 RUN mvn dependency:go-offline -B
 
-# Copy the source code
+# Copy source code
 COPY src ./src
 
-# Expose the port that Spring Boot will run on
+# Build the application
+RUN mvn clean package -DskipTests
+
+# Expose port
 EXPOSE 8080
 
-# Create a startup script
-RUN echo '#!/bin/bash\necho "🐾 Starting Pet Paradise Backend Server..."\necho "📦 Dependencies: Java 17 + Maven + H2 Database"\necho "🌐 Server will be available at: http://localhost:8080/api/v1"\necho "📚 API Documentation: http://localhost:8080/api/v1/swagger-ui.html"\necho "🗄️ Database Console: http://localhost:8080/api/v1/h2-console"\necho ""\nmvn clean spring-boot:run' > start.sh && chmod +x start.sh
+# Set environment variables
+ENV SPRING_PROFILES_ACTIVE=prod
 
-# Set the default command to run the application
-CMD ["./start.sh"]
+# Run the application
+CMD ["java", "-jar", "target/pet-paradise-backend-0.0.1-SNAPSHOT.jar"]

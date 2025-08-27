@@ -1,0 +1,31 @@
+{
+  "name": "Pet Paradise Backend",
+  "description": "Spring Boot REST API for Pet Paradise Application",
+  "image": "heroku/java",
+  "addons": [
+    {
+      "plan": "heroku-postgresql:mini",
+      "as": "DATABASE"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/java"
+    }
+  ],
+  "env": {
+    "SPRING_PROFILES_ACTIVE": "prod",
+    "JWT_SECRET": {
+      "description": "Secret key for JWT tokens (min 256 bits)",
+      "generator": "secret"
+    },
+    "JWT_EXPIRATION": "86400"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  },
+  "stack": "heroku-22"
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Pet Paradise Development",
+  "image": "mcr.microsoft.com/devcontainers/java:17",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "installMaven": true
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    }
+  },
+  "forwardPorts": [9090, 5173, 5174],
+  "postCreateCommand": "echo '🐾 Setting up Pet Paradise...' && cd backend && mvn dependency:go-offline && cd ../ && npm install && echo '✅ Environment ready!'",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "ms-vscode.vscode-typescript-next",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  }
+}
