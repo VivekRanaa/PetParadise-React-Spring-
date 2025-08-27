@@ -1,10 +1,4 @@
-import React             <div className="pool-header">
-                <h2>Pool Sessions & Aqua Therapy</h2>
-                <p>
-                    Our four-legged friends deserve the same enjoyment from splashing around with friends,
-                    soaking up the sun and enjoying their time poolside. Professional supervision ensures a safe experience!
-                </p>
-            </div>react";
+import React from "react";
 import "../App.css";
 import "./Pool.css";
 import { Link } from "react-router-dom";
@@ -26,9 +20,9 @@ function Pool() {
             <div className="Pool-images">
                 <div className="images">
                     <ul>
-                        <li id="li1"> <img src="/Images/p1.jpg" alt="Image Not Loading" />   </li>
-                        <li id="li2">  <img src="/Images/p2.jpg" alt="Image Not Loading"/>  </li>
-                        <li id="li3">  <img src="/Images/poolparty.jpg" alt="Image Not Loading" />    </li>
+                        <li id="li1"> <img src="/Images/p1.jpg" alt="Underwater Pet Therapy Session" />   </li>
+                        <li id="li2">  <img src="/Images/p2.jpg" alt="Dogs Enjoying Pool Time on Surface"/>  </li>
+                        <li id="li3">  <img src="/Images/poolparty.jpg" alt="Group Pool Activities and Socialization" />    </li>
                     </ul>
                 </div>
             </div>

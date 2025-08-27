@@ -81,7 +81,7 @@ public class ProductService {
 
     // Get products in stock
     public Page<ProductDTO> getProductsInStock(Pageable pageable) {
-        Page<Product> products = productRepository.findByInStockTrue(pageable);
+        Page<Product> products = productRepository.findByIsActiveTrue(pageable);
         List<ProductDTO> productDTOs = products.getContent().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
@@ -117,9 +117,9 @@ public class ProductService {
 
     // Search products by multiple criteria
     public Page<ProductDTO> searchProducts(String category, String name, BigDecimal minPrice, 
-                                         BigDecimal maxPrice, Boolean inStock, Pageable pageable) {
+                                         BigDecimal maxPrice, Boolean isActive, Pageable pageable) {
         Page<Product> products = productRepository.findProductsByCriteria(
-                category, name, minPrice, maxPrice, inStock, pageable);
+                category, name, minPrice, maxPrice, isActive, pageable);
         List<ProductDTO> productDTOs = products.getContent().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
@@ -157,15 +157,10 @@ public class ProductService {
         return productRepository.findAllCategories();
     }
 
-    // Get all badges
-    public List<String> getAllBadges() {
-        return productRepository.findAllBadges();
-    }
-
     // Get product statistics
     public ProductStatistics getProductStatistics() {
         long totalProducts = productRepository.count();
-        long inStockProducts = productRepository.findByInStockTrue().size();
+        long inStockProducts = productRepository.findByIsActiveTrue().size();
         long outOfStockProducts = totalProducts - inStockProducts;
         List<String> categories = productRepository.findAllCategories();
         
@@ -174,7 +169,27 @@ public class ProductService {
 
     // Helper method to convert Entity to DTO
     private ProductDTO convertToDTO(Product product) {
-        ProductDTO dto = modelMapper.map(product, ProductDTO.class);
+        ProductDTO dto = new ProductDTO();
+        
+        // Basic fields
+        dto.setId(product.getId());
+        dto.setName(product.getName());
+        dto.setCategory(product.getCategory());
+        dto.setPrice(product.getPrice());
+        dto.setOriginalPrice(product.getOriginalPrice());
+        dto.setImageUrl(product.getImageUrl());
+        dto.setDescription(product.getDescription());
+        dto.setStockQuantity(product.getStockQuantity());
+        
+        // Field mappings with type conversions
+        if (product.getRating() != null) {
+            dto.setRating(BigDecimal.valueOf(product.getRating()));
+        }
+        dto.setReviews(product.getReviewCount());
+        dto.setBadge(product.getBrand());
+        dto.setInStock(product.getIsActive());
+        
+        // Date formatting
         if (product.getCreatedAt() != null) {
             dto.setCreatedAt(product.getCreatedAt().format(formatter));
         }
@@ -192,10 +207,16 @@ public class ProductService {
         existingProduct.setOriginalPrice(productDTO.getOriginalPrice());
         existingProduct.setImageUrl(productDTO.getImageUrl());
         existingProduct.setDescription(productDTO.getDescription());
-        existingProduct.setRating(productDTO.getRating());
-        existingProduct.setReviews(productDTO.getReviews());
-        existingProduct.setBadge(productDTO.getBadge());
-        existingProduct.setInStock(productDTO.getInStock());
+        
+        // Convert BigDecimal to Double for rating
+        if (productDTO.getRating() != null) {
+            existingProduct.setRating(productDTO.getRating().doubleValue());
+        }
+        
+        // Map DTO fields to Entity fields
+        existingProduct.setReviewCount(productDTO.getReviews());
+        existingProduct.setBrand(productDTO.getBadge()); // Using brand field instead of badge
+        existingProduct.setIsActive(productDTO.getInStock()); // Using isActive instead of inStock
         existingProduct.setStockQuantity(productDTO.getStockQuantity());
     }
 

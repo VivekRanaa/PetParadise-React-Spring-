@@ -76,18 +76,18 @@
 
 .images ul li {
     position: relative;
-    border-radius: var(--radius-2xl);
+    border-radius: var(--radius-xl);
     overflow: hidden;
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--shadow-medium);
     transition: all var(--transition-base);
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--background-primary);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-color);
 }
 
 .images ul li:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-xl);
 }
 
 .images ul li img {
@@ -95,7 +95,7 @@
     height: 250px;
     object-fit: cover;
     transition: transform var(--transition-base);
-    border-radius: var(--radius-2xl);
+    border-radius: var(--radius-xl);
 }
 
 .images ul li:hover img {
@@ -109,7 +109,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+    background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1));
     opacity: 0;
     transition: opacity var(--transition-base);
 }
@@ -169,8 +169,14 @@
         gap: var(--space-lg);
     }
     
+    .images ul li {
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-medium);
+    }
+    
     .images ul li img {
         height: 200px;
+        border-radius: var(--radius-lg);
     }
 }
 
@@ -187,8 +193,14 @@
         gap: var(--space-md);
     }
     
+    .images ul li {
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-light);
+    }
+    
     .images ul li img {
         height: 180px;
+        border-radius: var(--radius-md);
     }
 }
 
@@ -197,6 +209,12 @@
 .hero-container h3 {
     position: relative;
     top: auto;
+}
+
+/* Dark mode adjustments for images */
+[data-theme="dark"] .images ul li {
+    background: var(--background-secondary);
+    border-color: var(--border-color);
 }
 
 /* Video background support (if enabled) */

@@ -1,4 +1,7 @@
-package com.petparadise;
+package com.pe				"  🚀 Pet Paradise Backend Started Successfully! 🚀\n" +
+				"  Server running on: http://localhost:9090/api\n" +
+				"  Swagger UI: http://localhost:9090/swagger-ui.html\n" +
+				"  H2 Database Console: http://localhost:9090/h2-console\n" +adise;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

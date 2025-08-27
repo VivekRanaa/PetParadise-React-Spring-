@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 @Tag(name = "Products", description = "API for managing pet shop products")
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5173", "http://localhost:5174"})
 public class ProductController {
@@ -154,7 +154,7 @@ public class ProductController {
             @RequestParam(required = false) String name,
             @RequestParam(required = false) BigDecimal minPrice,
             @RequestParam(required = false) BigDecimal maxPrice,
-            @RequestParam(required = false) Boolean inStock,
+            @RequestParam(required = false) Boolean isActive,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "12") int size,
             @RequestParam(defaultValue = "name") String sortBy,
@@ -165,7 +165,7 @@ public class ProductController {
         Pageable pageable = PageRequest.of(page, size, sort);
         
         Page<ProductDTO> products = productService.searchProducts(
-                category, name, minPrice, maxPrice, inStock, pageable);
+                category, name, minPrice, maxPrice, isActive, pageable);
         return ResponseEntity.ok(products);
     }
 
@@ -198,13 +198,6 @@ public class ProductController {
     public ResponseEntity<List<String>> getAllCategories() {
         List<String> categories = productService.getAllCategories();
         return ResponseEntity.ok(categories);
-    }
-
-    @Operation(summary = "Get all badges", description = "Retrieve all product badges")
-    @GetMapping("/badges")
-    public ResponseEntity<List<String>> getAllBadges() {
-        List<String> badges = productService.getAllBadges();
-        return ResponseEntity.ok(badges);
     }
 
     @Operation(summary = "Get product statistics", description = "Retrieve product statistics and metrics")

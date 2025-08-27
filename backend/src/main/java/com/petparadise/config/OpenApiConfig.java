@@ -16,7 +16,7 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI petParadiseOpenAPI() {
         Server devServer = new Server();
-        devServer.setUrl("http://localhost:8080/api/v1");
+        devServer.setUrl("http://localhost:9090/api");
         devServer.setDescription("Development Server");
 
         Contact contact = new Contact();

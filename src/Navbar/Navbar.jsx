@@ -1,15 +1,21 @@
 import React, {useState, useEffect} from "react";
 import {Link, useLocation} from 'react-router-dom';
 import "./Navbar.css"
-import {FaFacebookSquare,FaInstagramSquare,FaYoutubeSquare} from 'react-icons/fa';
+import {FaShoppingCart, FaUser, FaSignOutAlt, FaClipboardList} from 'react-icons/fa';
 import {HiX} from 'react-icons/hi';
 import DarkMode from "../DarkMode/DarkMode.jsx";
 import {GiHamburgerMenu} from "react-icons/gi";
+import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
 
 function Navbar() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [showUserMenu, setShowUserMenu] = useState(false);
     const location = useLocation();
+    
+    const { user, logout, isAuthenticated } = useAuth();
+    const { getCartItemCount } = useCart();
 
     // Handle scroll effect for navbar
     useEffect(() => {
@@ -25,11 +31,17 @@ function Navbar() {
     // Close mobile menu when route changes
     useEffect(() => {
         setShowMobileMenu(false);
+        setShowUserMenu(false);
     }, [location]);
 
     const toggleMobileMenu = (e) => {
         e.preventDefault();
         setShowMobileMenu(!showMobileMenu);
+    };
+
+    const handleLogout = () => {
+        logout();
+        setShowUserMenu(false);
     };
 
     const navLinks = [
@@ -67,27 +79,56 @@ function Navbar() {
                     </ul>
                 </div>
 
-                {/* Social Media & Dark Mode */}
-                <div className="social-media">
-                    <ul className="social-media-desktop">
+                {/* Right Side Actions */}
+                <div className="navbar-actions">
+                    <ul className="navbar-actions-desktop">
                         <li className="darkmode">
                             <DarkMode />
                         </li>
-                        <li>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                                <FaInstagramSquare className="insta" />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                                <FaFacebookSquare className="fb" />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                                <FaYoutubeSquare className="yt" />
-                            </a>
-                        </li>
+                        
+                        {/* Cart Icon */}
+                        {isAuthenticated && (
+                            <li className="cart-item">
+                                <Link to="/cart" className="cart-link">
+                                    <FaShoppingCart className="cart-icon" />
+                                    {getCartItemCount() > 0 && (
+                                        <span className="cart-count">{getCartItemCount()}</span>
+                                    )}
+                                </Link>
+                            </li>
+                        )}
+
+                        {/* Authentication */}
+                        {isAuthenticated ? (
+                            <li className="user-menu-container">
+                                <div 
+                                    className="user-menu-trigger"
+                                    onClick={() => setShowUserMenu(!showUserMenu)}
+                                >
+                                    <FaUser className="user-icon" />
+                                    <span className="user-name">Hi, {user?.firstName}!</span>
+                                </div>
+                                {showUserMenu && (
+                                    <div className="user-dropdown">
+                                        <Link to="/orders" className="dropdown-item">
+                                            <FaClipboardList /> Orders
+                                        </Link>
+                                        <button onClick={handleLogout} className="dropdown-item logout-btn">
+                                            <FaSignOutAlt /> Logout
+                                        </button>
+                                    </div>
+                                )}
+                            </li>
+                        ) : (
+                            <>
+                                <li>
+                                    <Link to="/login" className="auth-link">Login</Link>
+                                </li>
+                                <li>
+                                    <Link to="/register" className="auth-link signup">Sign Up</Link>
+                                </li>
+                            </>
+                        )}
                     </ul>
 
                     {/* Mobile Hamburger Menu */}
@@ -111,22 +152,45 @@ function Navbar() {
                             </Link>
                         </li>
                     ))}
+                    
+                    {/* Mobile Auth Links */}
+                    {isAuthenticated ? (
+                        <>
+                            <li>
+                                <Link to="/cart" onClick={() => setShowMobileMenu(false)}>
+                                    Cart ({getCartItemCount()})
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/orders" onClick={() => setShowMobileMenu(false)}>
+                                    Orders
+                                </Link>
+                            </li>
+                            <li>
+                                <button onClick={handleLogout} className="mobile-logout-btn">
+                                    Logout
+                                </button>
+                            </li>
+                        </>
+                    ) : (
+                        <>
+                            <li>
+                                <Link to="/login" onClick={() => setShowMobileMenu(false)}>
+                                    Login
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/register" onClick={() => setShowMobileMenu(false)}>
+                                    Sign Up
+                                </Link>
+                            </li>
+                        </>
+                    )}
                 </ul>
                 
-                {/* Mobile Social Media */}
-                <div className="mobile-social">
+                {/* Mobile Dark Mode */}
+                <div className="mobile-actions">
                     <DarkMode />
-                    <div className="mobile-social-icons">
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                            <FaInstagramSquare className="insta" />
-                        </a>
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                            <FaFacebookSquare className="fb" />
-                        </a>
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                            <FaYoutubeSquare className="yt" />
-                        </a>
-                    </div>
                 </div>
             </div>
 

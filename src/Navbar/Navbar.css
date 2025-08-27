@@ -86,13 +86,13 @@
     width: 100%;
 }
 
-.social-media {
+.navbar-actions {
     display: flex;
     align-items: center;
     gap: var(--space-md);
 }
 
-.social-media-desktop {
+.navbar-actions-desktop {
     display: flex;
     align-items: center;
     gap: var(--space-md);
@@ -101,36 +101,22 @@
     padding: 0;
 }
 
-.social-media-desktop li {
+.navbar-actions-desktop li {
     display: flex;
     align-items: center;
+    height: 2.5rem;
 }
 
-.social-media-desktop .darkmode {
+.navbar-actions-desktop .darkmode {
     margin-right: var(--space-sm);
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
 }
 
-.social-media-desktop .insta,
-.social-media-desktop .fb,
-.social-media-desktop .yt {
-    font-size: 1.5rem;
-    transition: all var(--transition-base);
-    cursor: pointer;
-}
-
-.social-media-desktop .insta:hover {
-    transform: translateY(-2px) scale(1.1);
-    filter: brightness(1.2);
-}
-
-.social-media-desktop .fb:hover {
-    transform: translateY(-2px) scale(1.1);
-    filter: brightness(1.2);
-}
-
-.social-media-desktop .yt:hover {
-    transform: translateY(-2px) scale(1.1);
-    filter: brightness(1.2);
+.navbar-actions-desktop .darkmode .dark_mode {
+    margin-top: 0;
+    margin-left: 0;
 }
 
 .hamburger-menu {
@@ -188,7 +174,7 @@
         display: none;
     }
     
-    .social-media-desktop {
+    .navbar-actions-desktop {
         display: none;
     }
     
@@ -241,28 +227,12 @@
         color: var(--primary-color);
     }
     
-    .mobile-social {
+    .mobile-actions {
         margin-top: var(--space-xl);
         padding-top: var(--space-lg);
         border-top: 1px solid var(--border-color);
         display: flex;
-        flex-direction: column;
-        gap: var(--space-md);
-    }
-    
-    .mobile-social-icons {
-        display: flex;
-        gap: var(--space-lg);
         justify-content: center;
-    }
-    
-    .mobile-social-icons a {
-        font-size: 1.5rem;
-        transition: all var(--transition-base);
-    }
-    
-    .mobile-social-icons a:hover {
-        transform: translateY(-2px) scale(1.1);
     }
     
     .mobile-menu-overlay {
@@ -306,32 +276,206 @@
     width: 100%;
 }
 
-/* Social media icon colors */
-.insta {
-    color: #DD2A7B;
+/* Cart and Authentication Styles */
+.cart-item {
+    position: relative;
+}
+
+.cart-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all var(--transition-base);
+    height: 2.5rem;
+    line-height: 1;
+}
+
+.cart-link:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--primary-color);
+}
+
+.cart-icon {
+    font-size: 1.3rem;
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--accent-color);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.user-menu-container {
+    position: relative;
+}
+
+.user-menu-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all var(--transition-base);
+    color: var(--text-primary);
+    height: 2.5rem;
+    line-height: 1;
+}
+
+.user-menu-trigger:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--primary-color);
+}
+
+.user-icon {
+    font-size: 1.1rem;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--background-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-medium);
+    min-width: 150px;
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all var(--transition-base);
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--primary-color);
+}
+
+.logout-btn {
+    border-top: 1px solid var(--border-color);
+}
+
+.auth-link {
+    display: flex;
+    align-items: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all var(--transition-base);
+    font-weight: 500;
+    font-size: 0.9rem;
+    height: 2.5rem;
+    line-height: 1;
+}
+
+.auth-link:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--primary-color);
+}
+
+.auth-link.signup {
+    background: var(--primary-gradient);
+    color: white;
+    margin-left: 0.5rem;
+    border: 1px solid transparent;
+}
+
+.auth-link.signup:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+    background: var(--primary-gradient);
+    color: white;
+}
+
+.mobile-logout-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    padding: 1rem 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
     transition: color var(--transition-base);
 }
 
-.fb {
-    color: #1877F2;
-    transition: color var(--transition-base);
+.mobile-logout-btn:hover {
+    color: var(--primary-color);
 }
 
-.yt {
-    color: #FF0000;
-    transition: color var(--transition-base);
+/* Dark mode adjustments */
+[data-theme="dark"] .cart-link,
+[data-theme="dark"] .user-menu-trigger,
+[data-theme="dark"] .auth-link {
+    color: var(--text-primary);
 }
 
-/* Dark mode social media adjustments */
-[data-theme="dark"] .insta {
-    color: #E1306C;
+[data-theme="dark"] .cart-link:hover,
+[data-theme="dark"] .user-menu-trigger:hover,
+[data-theme="dark"] .auth-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
 }
 
-[data-theme="dark"] .fb {
-    color: #4267B2;
+[data-theme="dark"] .auth-link.signup {
+    background: var(--primary-gradient);
+    color: white;
 }
 
-[data-theme="dark"] .yt {
-    color: #FF6B6B;
+[data-theme="dark"] .auth-link.signup:hover {
+    background: var(--primary-gradient);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+}
+
+[data-theme="dark"] .user-dropdown {
+    background: var(--background-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 

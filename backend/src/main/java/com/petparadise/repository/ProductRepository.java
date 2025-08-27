@@ -21,10 +21,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findByCategory(String category, Pageable pageable);
 
     // Find products in stock
-    List<Product> findByInStockTrue();
+    List<Product> findByIsActiveTrue();
 
     // Find products in stock with pagination
-    Page<Product> findByInStockTrue(Pageable pageable);
+    Page<Product> findByIsActiveTrue(Pageable pageable);
 
     // Find products by name containing (case-insensitive)
     @Query("SELECT p FROM Product p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', :name, '%'))")
@@ -52,11 +52,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p WHERE p.originalPrice IS NOT NULL AND p.originalPrice > p.price")
     Page<Product> findProductsWithDiscount(Pageable pageable);
 
-    // Find products by badge
-    List<Product> findByBadge(String badge);
-
     // Find products with low stock
-    @Query("SELECT p FROM Product p WHERE p.stockQuantity <= :threshold AND p.inStock = true")
+    @Query("SELECT p FROM Product p WHERE p.stockQuantity <= :threshold AND p.isActive = true")
     List<Product> findLowStockProducts(@Param("threshold") Integer threshold);
 
     // Search products by multiple criteria
@@ -65,13 +62,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
            "(:name IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :name, '%'))) AND " +
            "(:minPrice IS NULL OR p.price >= :minPrice) AND " +
            "(:maxPrice IS NULL OR p.price <= :maxPrice) AND " +
-           "(:inStock IS NULL OR p.inStock = :inStock)")
+           "(:isActive IS NULL OR p.isActive = :isActive)")
     Page<Product> findProductsByCriteria(
             @Param("category") String category,
             @Param("name") String name,
             @Param("minPrice") BigDecimal minPrice,
             @Param("maxPrice") BigDecimal maxPrice,
-            @Param("inStock") Boolean inStock,
+            @Param("isActive") Boolean isActive,
             Pageable pageable);
 
     // Find top-rated products
@@ -79,7 +76,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findTopRatedProducts(Pageable pageable);
 
     // Find best sellers (products with most reviews)
-    @Query("SELECT p FROM Product p WHERE p.reviews IS NOT NULL ORDER BY p.reviews DESC")
+    @Query("SELECT p FROM Product p WHERE p.reviewCount IS NOT NULL ORDER BY p.reviewCount DESC")
     List<Product> findBestSellers(Pageable pageable);
 
     // Count products by category
@@ -89,8 +86,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // Get all unique categories
     @Query("SELECT DISTINCT p.category FROM Product p WHERE p.category IS NOT NULL ORDER BY p.category")
     List<String> findAllCategories();
-
-    // Get all unique badges
-    @Query("SELECT DISTINCT p.badge FROM Product p WHERE p.badge IS NOT NULL ORDER BY p.badge")
-    List<String> findAllBadges();
 }

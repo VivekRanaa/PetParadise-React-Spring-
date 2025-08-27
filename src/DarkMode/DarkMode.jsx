@@ -1,6 +1,5 @@
 import React from "react";
-import Sun from "./Sun.svg";
-import Moon from "./Moon.svg";
+import { FaSun, FaMoon } from 'react-icons/fa';
 import "./DarkMode.css";
 
 const DarkMode = () => {
@@ -24,7 +23,7 @@ const DarkMode = () => {
     }
 
     return (
-        <div className='dark_mode'>
+        <div className='dark_mode' title={selectedTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}>
             <input
                 className='dark_mode_input'
                 type='checkbox'
@@ -33,8 +32,8 @@ const DarkMode = () => {
                 defaultChecked={selectedTheme==="dark"}
             />
           <label className='dark_mode_label' htmlFor='darkmode-toggle'>
-                {/*<img src={Sun} alt="" />
-                <img src={Moon} alt="" />*/}
+                <FaSun className="sun-icon" />
+                <FaMoon className="moon-icon" />
             </label>
         </div>
     );

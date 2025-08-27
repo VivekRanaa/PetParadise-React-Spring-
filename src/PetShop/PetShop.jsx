@@ -2,11 +2,19 @@ import React, { useState } from "react";
 import "./PetShop.css";
 import { FiSearch, FiShoppingCart, FiHeart, FiStar } from "react-icons/fi";
 import { FaPaw, FaUtensils, FaTshirt, FaGamepad } from "react-icons/fa";
+import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
+import CustomPopup from '../components/CustomPopup/CustomPopup';
+import usePopup from '../hooks/usePopup';
+
 function PetShop() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const [cart, setCart] = useState([]);
     const [wishlist, setWishlist] = useState([]);
+    
+    const { addToCart } = useCart();
+    const { isAuthenticated } = useAuth();
+    const { popup, showSuccess, showError, showWarning, hidePopup } = usePopup();
 
     const categories = ["All", "Food", "Toys", "Accessories", "Health"];
 
@@ -17,11 +25,12 @@ function PetShop() {
             category: "Food",
             price: 1200,
             originalPrice: 1500,
-            image: "/Images/p1.jpg",
+            image: "/Images/product-dog-food.jpg",
             description: "High-quality nutrition for your furry friend",
             rating: 4.5,
             reviews: 128,
-            badge: "Best Seller"
+            badge: "Best Seller",
+            serviceId: 1 // This will map to our backend service
         },
         {
             id: 2,
@@ -29,11 +38,12 @@ function PetShop() {
             category: "Toys",
             price: 450,
             originalPrice: 600,
-            image: "/Images/p2.jpg",
+            image: "/Images/product-dog-toy.jpg",
             description: "Keep your pet entertained for hours",
             rating: 4.2,
             reviews: 89,
-            badge: "New"
+            badge: "New",
+            serviceId: 2
         },
         {
             id: 3,
@@ -41,11 +51,12 @@ function PetShop() {
             category: "Accessories",
             price: 2500,
             originalPrice: 3000,
-            image: "/Images/bath.jpg",
+            image: "/Images/product-pet-bed.jpg",
             description: "Ultra-soft and cozy sleeping space",
             rating: 4.8,
             reviews: 203,
-            badge: "Popular"
+            badge: "Popular",
+            serviceId: 3
         },
         {
             id: 4,
@@ -53,7 +64,7 @@ function PetShop() {
             category: "Health",
             price: 800,
             originalPrice: 1000,
-            image: "/Images/groom.jpg",
+            image: "/Images/product-supplements.jpg",
             description: "Essential vitamins for pet wellness",
             rating: 4.6,
             reviews: 156,
@@ -65,7 +76,7 @@ function PetShop() {
             category: "Food",
             price: 950,
             originalPrice: 1200,
-            image: "/Images/pool.jpg",
+            image: "/Images/product-cat-food.jpg",
             description: "Balanced nutrition for cats of all ages",
             rating: 4.3,
             reviews: 94,
@@ -77,7 +88,7 @@ function PetShop() {
             category: "Accessories",
             price: 1800,
             originalPrice: 2200,
-            image: "/Images/poolparty.jpg",
+            image: "/Images/product-grooming-kit.jpg",
             description: "Complete grooming solution at home",
             rating: 4.7,
             reviews: 167,
@@ -91,8 +102,24 @@ function PetShop() {
         return matchesCategory && matchesSearch;
     });
 
-    const addToCart = (product) => {
-        setCart(prev => [...prev, product]);
+    const handleAddToCart = async (product) => {
+        const result = await addToCart(product.serviceId || product.id, 1);
+        
+        if (!result) {
+            showError('An unexpected error occurred. Please try again.', 'Error');
+            return;
+        }
+        
+        if (!result.success) {
+            if (result.error === 'Please login to add items to cart') {
+                showWarning('Please login to add items to cart', 'Login Required');
+            } else {
+                showError(result.error || 'Failed to add item to cart. Please try again.', 'Error');
+            }
+            return;
+        }
+        
+        showSuccess(`${product.name} added to cart!`, 'Item Added');
     };
 
     const toggleWishlist = (productId) => {
@@ -102,8 +129,6 @@ function PetShop() {
                 : [...prev, productId]
         );
     };
-
-    const cartTotal = cart.reduce((total, item) => total + item.price, 0);
 
     const renderStars = (rating) => {
         return Array.from({ length: 5 }, (_, index) => (
@@ -185,7 +210,7 @@ function PetShop() {
                                     <div className="product-actions">
                                         <button 
                                             className="add-to-cart-btn"
-                                            onClick={() => addToCart(product)}
+                                            onClick={() => handleAddToCart(product)}
                                         >
                                             <FiShoppingCart />
                                             Add to Cart
@@ -207,19 +232,20 @@ function PetShop() {
                         ))}
                     </div>
                 </div>
-
-                {cart.length > 0 && (
-                    <div className="cart-summary">
-                        <h4>Cart Summary</h4>
-                        <p>Items: {cart.length}</p>
-                        <div className="cart-total">₹{cartTotal}</div>
-                        <button className="checkout-btn">
-                            <FiShoppingCart />
-                            Checkout
-                        </button>
-                    </div>
-                )}
             </div>
+            
+            {/* Custom Popup */}
+            <CustomPopup
+                isOpen={popup.isOpen}
+                onClose={hidePopup}
+                onConfirm={popup.onConfirm}
+                title={popup.title}
+                message={popup.message}
+                type={popup.type}
+                confirmText={popup.confirmText}
+                cancelText={popup.cancelText}
+                showCancel={popup.showCancel}
+            />
         </div>
     );
 }

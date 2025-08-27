@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/services")
+@RequestMapping("/api/services")
 @Tag(name = "Pet Services", description = "API for managing pet care services")
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5173", "http://localhost:5174"})
 public class ServiceController {

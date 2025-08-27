@@ -20,7 +20,8 @@ public interface BookingFormRepository extends JpaRepository<BookingForm, Long> 
     List<BookingForm> findByEmail(String email);
 
     // Find bookings by mobile number
-    List<BookingForm> findByMobile_No(String mobileNo);
+    @Query("SELECT b FROM BookingForm b WHERE b.mobile_No = :mobileNo")
+    List<BookingForm> findByMobileNo(@Param("mobileNo") String mobileNo);
 
     // Find bookings by service type (facilities)
     List<BookingForm> findByFacilities(String facilities);

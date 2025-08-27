@@ -84,7 +84,7 @@ const Details = () => {
         setSubmitStatus(null);
 
         try {
-            await axios.post("http://localhost:8080/api/v1/Forms", formData);
+            await axios.post("http://localhost:9090/api/Forms", formData);
             setSubmitStatus('success');
             setFormData({
                 first_Name: '',

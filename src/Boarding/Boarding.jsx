@@ -31,17 +31,17 @@ function Boarding() {
     const galleryImages = [
         {
             src: "/Images/b1.jpeg",
-            alt: "Happy dogs playing together",
+            alt: "Happy dogs playing together in safe boarding facility",
             caption: "Playtime & Socialization"
         },
         {
             src: "/Images/b2.jpeg",
-            alt: "Comfortable sleeping area",
+            alt: "Comfortable sleeping and rest areas for boarding pets",
             caption: "Cozy Rest Areas"
         },
         {
             src: "/Images/t2.jpeg",
-            alt: "Pet care activities",
+            alt: "Professional pet care staff providing daily attention",
             caption: "Daily Care Routine"
         }
     ];

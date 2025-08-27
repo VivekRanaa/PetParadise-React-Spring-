@@ -1,9 +1,4 @@
-import React             <div className="grooming-header">
-                <h2>Professional Pet Grooming Services</h2>
-                <p>Pet Paradise is Bangalore's leading pet grooming home service provider. We offer convenient, 
-                flexible and cost-effective grooming services right at your doorstep. Our professional 
-                groomers ensure your furry friends look and feel their absolute best.</p>
-            </div>m "react";
+import React from "react";
 import "../App.css";
 import "./Grooming.css";
 import { Link } from "react-router-dom";
@@ -22,9 +17,9 @@ function Groom() {
             <div className="Groom-images">
                 <div className="images">
                     <ul>
-                        <li id="li1"> <img src="/Images/bath1.jpeg" alt="Image Not Loading" />   </li>
-                        <li id="li2">  <img src="/Images/bath2.jpeg" alt="Image Not Loading"/>  </li>
-                        <li id="li3">  <img src="/Images/groompage.jpg" alt="Image Not Loading" />    </li>
+                        <li id="li1"> <img src="/Images/bath1.jpeg" alt="Professional Dog Bathing Service" />   </li>
+                        <li id="li2">  <img src="/Images/bath2.jpeg" alt="Luxury Pet Spa and Drying Treatment"/>  </li>
+                        <li id="li3">  <img src="/Images/groompage.jpg" alt="Professional Pet Styling and Grooming" />    </li>
                     </ul>
                 </div>
             </div>
