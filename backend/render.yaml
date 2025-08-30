@@ -1,8 +1,14 @@
 services:
   - type: web
     name: petparadise-backend
-    runtime: java
-    buildCommand: ./mvnw clean package -DskipTests
+    env: java
+    buildCommand: |
+      if command -v mvn > /dev/null; then
+        mvn clean package -DskipTests
+      else
+        chmod +x ./mvnw
+        ./mvnw clean package -DskipTests
+      fi
     startCommand: java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/pet-paradise-backend-0.0.1-SNAPSHOT.jar
     envVars:
       - key: SPRING_PROFILES_ACTIVE
