@@ -12,11 +12,8 @@ RUN apt-get update && \
 
 # Copy Maven files
 COPY pom.xml .
-COPY mvnw .
-COPY mvnw.cmd .
-COPY .mvn .mvn
 
-# Download dependencies
+# Download dependencies (using system Maven instead of wrapper)
 RUN mvn dependency:go-offline -B
 
 # Copy source code
@@ -30,6 +27,7 @@ EXPOSE 8080
 
 # Set environment variables
 ENV SPRING_PROFILES_ACTIVE=prod
+ENV PORT=8080
 
 # Run the application
-CMD ["java", "-jar", "target/pet-paradise-backend-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-Dserver.port=${PORT}", "-jar", "target/pet-paradise-backend-0.0.1-SNAPSHOT.jar"]
