@@ -1,10 +1,13 @@
-version: 2
-
-build:
-  commands:
-    - echo "Building Pet Paradise Backend..."
-    - mvn clean package -DskipTests
-
-deploy:
-  - echo "Starting Pet Paradise Backend..."
-  - java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/pet-paradise-backend-0.0.1-SNAPSHOT.jar
+services:
+  - type: web
+    name: petparadise-backend
+    runtime: java
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/pet-paradise-backend-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: JWT_SECRET
+        value: mySecretKey1234567890123456789012345678901234567890
+      - key: CORS_ORIGINS
+        value: http://localhost:5173,http://localhost:5174
